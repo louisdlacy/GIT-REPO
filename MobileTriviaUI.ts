@@ -64,7 +64,7 @@ class MobileTriviaUI extends UIComponent {
         // Question Prompt
         View({
           children: Text({
-            text: "Which color do you choose?",
+            text: "Which color do you choose?", // This will replace with the question
             style: {
               fontSize: 28,
               color: "#fff",
