@@ -1,4 +1,4 @@
-import { Text, UIComponent, UINode, View } from 'horizon/ui';
+import { Text, UIComponent, UINode, View } from "horizon/ui";
 
 class UItest extends UIComponent<typeof UItest> {
   protected panelHeight: number = 300;
@@ -17,18 +17,19 @@ class UItest extends UIComponent<typeof UItest> {
           text: "New UI Panel",
           style: {
             fontSize: 48,
-            textAlign: 'center',
-            textAlignVertical: 'center',
+            textAlign: "center",
+            textAlignVertical: "center",
             height: this.panelHeight,
             width: this.panelWidth,
-          }
-        })
+          },
+        }),
       ],
       style: {
-        backgroundColor: 'black',
+        backgroundColor: "black",
         height: this.panelHeight,
+
         width: this.panelWidth,
-      }
+      },
     });
   }
 }
