@@ -1,10 +1,6 @@
-.backups/
-.operations.log
-Queue_System_README.md
-Queue_System_README.md
-Queue_System_Manager.ts
-Queue_System_Example.ts
-Queue_System_Events.ts
-Queue_System_Checklist.md
-Queue_Interaction_Trigger.ts
-Queue_System_Checklist.md
+types/
+node_modules/
+*.d.ts
+*.js
+tsconfig.tsbuildinfo
+/tmp/
