@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(/C:\\Users\\Louis Lacy\\Desktop\\GIT-REPO/**)",
+      "Read(/C:\\Users\\Louis Lacy\\Desktop\\GIT-REPO/**)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}
