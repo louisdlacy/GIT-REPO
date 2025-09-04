@@ -10,8 +10,8 @@
 | 🤖 **NPC & AI**          | AI and character systems       | 97+ files    | [→ 4-NPC-AI](#4-npc-ai)                       |
 | 🛠️ **Utilities**         | Helper functions and tools     | 58+ files    | [→ 5-UTILITIES](#5-utilities)                 |
 | 📖 **Documentation**     | Guides and references          | 455+ files  | [→ 6-DOCUMENTATION](#6-documentation)         |
-| 🎯 **Example Projects**  | Complete games and samples     | 15+ projects | [→ 7-EXAMPLE-PROJECTS](#7-example-projects)   |
-| 📱 **Platform Specific** | Mobile, camera, web            | 10+ files    | [→ 8-PLATFORM-SPECIFIC](#8-platform-specific) |
+| 🎯 **Example Projects**  | Complete games and samples     | 493+ files   | [→ 7-EXAMPLE-PROJECTS](#7-example-projects)   |
+| 📱 **Platform Specific** | Mobile, camera, web            | 132+ files   | [→ 8-PLATFORM-SPECIFIC](#8-platform-specific) |
 
 ---
 
