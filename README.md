@@ -46,6 +46,7 @@ Helper functions and utility systems
 
 - **helper-functions/**: Utility functions (UtilArray_Func, animation helpers)
 - **math-physics/**: Mathematical and physics utilities (rotation, physics calculations)
+- **Turbo Analytics/**: Advanced analytics and demo systems (TurboAnalytics, DemoNinja components)
 
 ### 6-DOCUMENTATION/
 
