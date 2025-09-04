@@ -4,11 +4,11 @@
 
 | Category                 | Description                    | Count        | Go To                                         |
 | ------------------------ | ------------------------------ | ------------ | --------------------------------------------- |
-| 🏗️ **Core Framework**    | Foundation classes and samples | 15+ files    | [→ 1-CORE-FRAMEWORK](#1-core-framework)       |
-| 🎨 **UI System**         | User interface components      | 50+ files    | [→ 2-UI-SYSTEM](#2-ui-system)                 |
-| 🎮 **Game Mechanics**    | Core gameplay systems          | 80+ files    | [→ 3-GAME-MECHANICS](#3-game-mechanics)       |
-| 🤖 **NPC & AI**          | AI and character systems       | 20+ files    | [→ 4-NPC-AI](#4-npc-ai)                       |
-| 🛠️ **Utilities**         | Helper functions and tools     | 30+ files    | [→ 5-UTILITIES](#5-utilities)                 |
+| 🏗️ **Core Framework**    | Foundation classes and samples | 34+ files    | [→ 1-CORE-FRAMEWORK](#1-core-framework)       |
+| 🎨 **UI System**         | User interface components      | 170+ files   | [→ 2-UI-SYSTEM](#2-ui-system)                 |
+| 🎮 **Game Mechanics**    | Core gameplay systems          | 321+ files   | [→ 3-GAME-MECHANICS](#3-game-mechanics)       |
+| 🤖 **NPC & AI**          | AI and character systems       | 97+ files    | [→ 4-NPC-AI](#4-npc-ai)                       |
+| 🛠️ **Utilities**         | Helper functions and tools     | 58+ files    | [→ 5-UTILITIES](#5-utilities)                 |
 | 📖 **Documentation**     | Guides and references          | 455+ files  | [→ 6-DOCUMENTATION](#6-documentation)         |
 | 🎯 **Example Projects**  | Complete games and samples     | 15+ projects | [→ 7-EXAMPLE-PROJECTS](#7-example-projects)   |
 | 📱 **Platform Specific** | Mobile, camera, web            | 10+ files    | [→ 8-PLATFORM-SPECIFIC](#8-platform-specific) |
@@ -218,7 +218,24 @@
 - `performance/` - Performance monitoring
 - `analytics/` - Analytics systems
 - `Animations/` - Animation resources
-- `Turbo Analytics/` - Advanced analytics
+
+### 📁 Turbo Analytics/
+
+**Advanced analytics and demo systems**
+
+- `TurboAnalytics.ts` - Core analytics tracking system
+- `DebugTurbo.ts` - Debug utilities for Turbo system
+- `DemoNinjaCommon.ts` - Common demo ninja functionality
+- `DemoNinjaArea.ts` - Area-based demo components
+- `DemoNinjaDiscoveryMade.ts` - Discovery tracking system
+- `DemoNinjaFriction.ts` - Physics friction demo
+- `DemoNinjaJennyAudioPlayer.ts` - Audio player component
+- `DemoNinjaRewardsManager.ts` - Rewards management system
+- `DemoNinjaTasks.ts` - Task management system
+- `DemoNinjaWeapon.ts` - Weapon system demo
+- `DemoNinjaWearable.ts` - Wearable items system
+- `TurboAreaTrigger.ts` - Area-based event triggers
+- `TurboDiscoveryMadeTrigger.ts` - Discovery event triggers
 
 ---
 
