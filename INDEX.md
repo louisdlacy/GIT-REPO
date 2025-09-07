@@ -4,6 +4,7 @@
 
 | Category                 | Description                    | Count        | Go To                                         |
 | ------------------------ | ------------------------------ | ------------ | --------------------------------------------- |
+<<<<<<< HEAD
 | 🏗️ **Core Framework**    | Foundation classes and samples | 15+ files    | [→ 1-CORE-FRAMEWORK](#1-core-framework)       |
 | 🎨 **UI System**         | User interface components      | 50+ files    | [→ 2-UI-SYSTEM](#2-ui-system)                 |
 | 🎮 **Game Mechanics**    | Core gameplay systems          | 80+ files    | [→ 3-GAME-MECHANICS](#3-game-mechanics)       |
@@ -12,6 +13,16 @@
 | 📖 **Documentation**     | Guides and references          | 25+ files    | [→ 6-DOCUMENTATION](#6-documentation)         |
 | 🎯 **Example Projects**  | Complete games and samples     | 15+ projects | [→ 7-EXAMPLE-PROJECTS](#7-example-projects)   |
 | 📱 **Platform Specific** | Mobile, camera, web            | 10+ files    | [→ 8-PLATFORM-SPECIFIC](#8-platform-specific) |
+=======
+| 🏗️ **Core Framework**    | Foundation classes and samples | 34+ files    | [→ 1-CORE-FRAMEWORK](#1-core-framework)       |
+| 🎨 **UI System**         | User interface components      | 170+ files   | [→ 2-UI-SYSTEM](#2-ui-system)                 |
+| 🎮 **Game Mechanics**    | Core gameplay systems          | 321+ files   | [→ 3-GAME-MECHANICS](#3-game-mechanics)       |
+| 🤖 **NPC & AI**          | AI and character systems       | 97+ files    | [→ 4-NPC-AI](#4-npc-ai)                       |
+| 🛠️ **Utilities**         | Helper functions and tools     | 58+ files    | [→ 5-UTILITIES](#5-utilities)                 |
+| 📖 **Documentation**     | Guides and references          | 455+ files  | [→ 6-DOCUMENTATION](#6-documentation)         |
+| 🎯 **Example Projects**  | Complete games and samples     | 493+ files   | [→ 7-EXAMPLE-PROJECTS](#7-example-projects)   |
+| 📱 **Platform Specific** | Mobile, camera, web            | 132+ files   | [→ 8-PLATFORM-SPECIFIC](#8-platform-specific) |
+>>>>>>> 02e2aa33e2b20034ee5a40d514525e1f592af96e
 
 ---
 
@@ -218,7 +229,28 @@
 - `performance/` - Performance monitoring
 - `analytics/` - Analytics systems
 - `Animations/` - Animation resources
+<<<<<<< HEAD
 - `Turbo Analytics/` - Advanced analytics
+=======
+
+### 📁 Turbo Analytics/
+
+**Advanced analytics and demo systems**
+
+- `TurboAnalytics.ts` - Core analytics tracking system
+- `DebugTurbo.ts` - Debug utilities for Turbo system
+- `DemoNinjaCommon.ts` - Common demo ninja functionality
+- `DemoNinjaArea.ts` - Area-based demo components
+- `DemoNinjaDiscoveryMade.ts` - Discovery tracking system
+- `DemoNinjaFriction.ts` - Physics friction demo
+- `DemoNinjaJennyAudioPlayer.ts` - Audio player component
+- `DemoNinjaRewardsManager.ts` - Rewards management system
+- `DemoNinjaTasks.ts` - Task management system
+- `DemoNinjaWeapon.ts` - Weapon system demo
+- `DemoNinjaWearable.ts` - Wearable items system
+- `TurboAreaTrigger.ts` - Area-based event triggers
+- `TurboDiscoveryMadeTrigger.ts` - Discovery event triggers
+>>>>>>> 02e2aa33e2b20034ee5a40d514525e1f592af96e
 
 ---
 
@@ -228,9 +260,16 @@
 
 **API documentation and guides**
 
+<<<<<<< HEAD
 - `*.md` files - Comprehensive API documentation
 - Getting started guides
 - Best practices documentation
+=======
+- `*.md` files - Comprehensive API documentation (88 guides)
+- Getting started guides
+- Best practices documentation
+- **`.Error_LOG.md/`** - Advanced error logging system with methodology
+>>>>>>> 02e2aa33e2b20034ee5a40d514525e1f592af96e
 
 ### 📁 tutorials/
 
@@ -241,10 +280,29 @@
 
 ### 📁 error-logs/
 
+<<<<<<< HEAD
 **Error documentation and troubleshooting**
 
 - Error reference guides
 - Debugging documentation
+=======
+**Comprehensive error documentation and troubleshooting system**
+
+- **`.Error_LOG.md/`** - Systematic error logging methodology (13 files)
+  - `ERROR_LOG_INDEX.md` - Master index of all error categories
+  - `ERROR_LOGGING_METHODOLOGY.md` - Error documentation standards
+  - `ERROR_DUPLICATION_SCANNER.md` - Tool for preventing duplicate logs
+  - `Binding_API_Error.md` - Data binding and state management errors
+  - `Component_Structure_Error.md` - Class architecture and lifecycle issues
+  - `Event_System_Error.md` - Event handling and communication errors
+  - `Type_Safety_Error.md` - TypeScript compilation issues
+  - `UINode_Children_Error.md` - UI component structure issues
+  - `Component_Implementation_Error.md` - Implementation pattern errors
+  - Plus CTF-specific fix guides and additional error categories
+- Error reference guides organized by error type (not component)
+- Prevention strategies and reusable solution patterns
+- Debugging documentation with runnable code examples
+>>>>>>> 02e2aa33e2b20034ee5a40d514525e1f592af96e
 
 ### 📁 Additional Resources
 
@@ -348,12 +406,22 @@
 
 ## 📊 Repository Statistics
 
+<<<<<<< HEAD
 - **Total Files**: 300+ TypeScript files
 - **Total Projects**: 15+ complete game examples
 - **Categories**: 8 main organizational categories
 - **Subdirectories**: 25+ specialized subdirectories
 - **Documentation Files**: 25+ markdown guides
 - **Sample Components**: 5+ template implementations
+=======
+- **Total Files**: 750+ TypeScript files
+- **Total Projects**: 15+ complete game examples
+- **Categories**: 8 main organizational categories
+- **Subdirectories**: 25+ specialized subdirectories
+- **Documentation Files**: 455+ markdown guides and references
+- **Sample Components**: 5+ template implementations
+- **Error Documentation**: 13 systematic error logs with methodology
+>>>>>>> 02e2aa33e2b20034ee5a40d514525e1f592af96e
 
 ---
 
@@ -370,4 +438,8 @@
 
 ---
 
+<<<<<<< HEAD
 _This index is automatically maintained. Last updated: August 31, 2025_
+=======
+_This index is automatically maintained. Last updated: September 3, 2024_
+>>>>>>> 02e2aa33e2b20034ee5a40d514525e1f592af96e
