@@ -1,0 +1,223 @@
+// Import the necessary modules from the Horizon Worlds core API.
+import * as hz from 'horizon/core';
+
+/**
+ * A universal component to independently move and/or rotate its attached entity.
+ * Uses user-friendly string properties for easy configuration.
+ */
+class MoveAndRotate extends hz.Component<typeof MoveAndRotate> {
+    // -- PROPERTIES --
+    // These controls appear in the Horizon editor when the script is attached to an object.
+    static propsDefinition = {
+        // --- Activation Controls ---
+        // A String. Users can type "Start on Load", "On Trigger", or "On Grab".
+        activationMode: { type: hz.PropTypes.String, default: "Start on Load" },
+        triggerEntity: { type: hz.PropTypes.Entity }, // Link to a Trigger Gizmo here.
+        resetOnTrigger: { type: hz.PropTypes.Boolean, default: true }, // If true, the object snaps back to its start position each time it's triggered.
+
+        // --- Space Control ---
+        // A checkbox to decide the animation's coordinate space.
+        // Unchecked (false) = World Space: Movement is based on the world's X, Y, Z axes.
+        // Checked (true) = Local Space: Movement is relative to the object's parent.
+        useLocalSpace: { type: hz.PropTypes.Boolean, default: false },
+
+        // --- Move Controls ---
+        enableMove: { type: hz.PropTypes.Boolean, default: true },
+        moveOffset: { type: hz.PropTypes.Vec3, default: new hz.Vec3(0, 1, 0) },
+        moveDuration: { type: hz.PropTypes.Number, default: 2.0 },
+        moveEndBehavior: { type: hz.PropTypes.String, default: "Stop" },
+        moveEasingType: { type: hz.PropTypes.String, default: "Ease" },
+
+        // --- Rotate Controls ---
+        enableRotate: { type: hz.PropTypes.Boolean, default: false },
+        rotateOffset: { type: hz.PropTypes.Vec3, default: new hz.Vec3(0, 90, 0) },
+        rotateDuration: { type: hz.PropTypes.Number, default: 2.0 },
+        rotateEndBehavior: { type: hz.PropTypes.String, default: "Stop" },
+        rotateEasingType: { type: hz.PropTypes.String, default: "Ease" },
+    };
+
+    // -- STATE VARIABLES --
+    private isPlaying: boolean = false;
+    private startPosition!: hz.Vec3;
+    private targetPosition!: hz.Vec3;
+    private moveElapsedTime: number = 0;
+    private moveHasFinished: boolean = false;
+    private startRotation!: hz.Quaternion;
+    private targetRotation!: hz.Quaternion;
+    private rotateElapsedTime: number = 0;
+    private rotateHasFinished: boolean = false;
+
+    // The 'start()' function runs once for initial setup.
+    start() {
+        this.setupActivation();
+        this.connectLocalBroadcastEvent(hz.World.onUpdate, this.onUpdate.bind(this));
+    }
+
+    // Sets up the trigger based on the user's choice in the editor.
+    private setupActivation() {
+    // The switch now checks against the string value of the property
+    switch (this.props.activationMode) {
+        case "On Player Enter Trigger": // Formerly case 1
+            if (this.props.triggerEntity) {
+                const trigger = this.props.triggerEntity.as(hz.TriggerGizmo);
+                this.connectCodeBlockEvent(trigger, hz.CodeBlockEvents.OnPlayerEnterTrigger, () => this.triggerAnimation());
+            } else {
+                console.error("[MoveAndRotate] ERROR: activationMode is set to trigger, but no triggerEntity is linked.");
+            }
+            break;
+
+        case "On Grab": // Formerly case 2
+            this.connectCodeBlockEvent(this.entity, hz.CodeBlockEvents.OnGrabStart, () => this.triggerAnimation());
+            break;
+
+        case "Start on Load": // Formerly default/case 0
+        default:
+            this.triggerAnimation();
+            break;
+    }
+}
+
+    // Starts or resets the animation.
+    public triggerAnimation() {
+        if (this.isPlaying && !this.props.resetOnTrigger) {
+            return;
+        }
+        if (this.props.useLocalSpace) {
+            this.startPosition = this.entity.transform.localPosition.get();
+            this.startRotation = this.entity.transform.localRotation.get();
+        } else {
+            this.startPosition = this.entity.position.get();
+            this.startRotation = this.entity.rotation.get();
+        }
+        this.targetPosition = hz.Vec3.add(this.startPosition, this.props.moveOffset);
+        const offsetQuaternion = hz.Quaternion.fromEuler(this.props.rotateOffset);
+        this.targetRotation = hz.Quaternion.mul(this.startRotation, offsetQuaternion);
+        this.moveElapsedTime = 0;
+        this.moveHasFinished = false;
+        this.rotateElapsedTime = 0;
+        this.rotateHasFinished = false;
+        this.isPlaying = true;
+    }
+
+    // This function runs every frame and updates the animation.
+    private onUpdate(data: { deltaTime: number }) {
+        if (!this.isPlaying) return;
+        if (this.props.enableMove && !this.moveHasFinished) {
+            this.updateMove(data.deltaTime);
+        }
+        if (this.props.enableRotate && !this.rotateHasFinished) {
+            this.updateRotate(data.deltaTime);
+        }
+        const moveIsDone = !this.props.enableMove || this.moveHasFinished;
+        const rotateIsDone = !this.props.enableRotate || this.rotateHasFinished;
+        if(moveIsDone && rotateIsDone) {
+            this.isPlaying = false;
+        }
+    }
+
+    // Handles the movement logic for the current frame.
+    private updateMove(deltaTime: number) {
+        this.moveElapsedTime += deltaTime;
+        let progress = Math.min(this.moveElapsedTime / this.props.moveDuration, 1.0);
+
+        if (progress >= 1.0) {
+            progress = 1.0;
+            const behavior = this.getEndBehaviorFromString(this.props.moveEndBehavior);
+            switch (behavior) {
+                case 1: this.entity.position.set(this.startPosition); this.moveHasFinished = true; break;
+                case 2: this.entity.position.set(this.startPosition); this.moveElapsedTime = 0; progress = 0; break;
+                case 3: [this.startPosition, this.targetPosition] = [this.targetPosition, this.startPosition]; this.moveElapsedTime = 0; progress = 0; break;
+                default: this.moveHasFinished = true; break;
+            }
+        }
+        const easing = this.getEasingTypeFromString(this.props.moveEasingType);
+        const easedProgress = this.getEasedProgress(progress, easing);
+        const currentPosition = hz.Vec3.lerp(this.startPosition, this.targetPosition, easedProgress);
+        if (this.props.useLocalSpace) {
+            this.entity.transform.localPosition.set(currentPosition);
+        } else {
+            this.entity.position.set(currentPosition);
+        }
+    }
+
+    // Handles the rotation logic for the current frame.
+    private updateRotate(deltaTime: number) {
+        this.rotateElapsedTime += deltaTime;
+        let progress = Math.min(this.rotateElapsedTime / this.props.rotateDuration, 1.0);
+
+        if (progress >= 1.0) {
+            progress = 1.0;
+            const behavior = this.getEndBehaviorFromString(this.props.rotateEndBehavior);
+            switch (behavior) {
+                case 1: this.entity.rotation.set(this.startRotation); this.rotateHasFinished = true; break;
+                case 2: this.entity.rotation.set(this.startRotation); this.rotateElapsedTime = 0; progress = 0; break;
+                case 3: [this.startRotation, this.targetRotation] = [this.targetRotation, this.startRotation]; this.rotateElapsedTime = 0; progress = 0; break;
+                default: this.rotateHasFinished = true; break;
+            }
+        }
+        const easing = this.getEasingTypeFromString(this.props.rotateEasingType);
+        const easedProgress = this.getEasedProgress(progress, easing);
+        const currentRotation = hz.Quaternion.slerp(this.startRotation, this.targetRotation, easedProgress);
+        if (this.props.useLocalSpace) {
+            this.entity.transform.localRotation.set(currentRotation);
+        } else {
+            this.entity.rotation.set(currentRotation);
+        }
+    }
+
+    // --- STRING CONVERSION HELPERS ---
+    private getActivationModeFromString(mode: string): number {
+        const lowerCaseMode = mode.toLowerCase().trim();
+        switch (lowerCaseMode) {
+            case "on trigger": return 1;
+            case "on grab": return 2;
+            case "start on load":
+            default: return 0;
+        }
+    }
+
+    private getEndBehaviorFromString(behavior: string): number {
+        const lowerCaseBehavior = behavior.toLowerCase().trim();
+        switch (lowerCaseBehavior) {
+            case "reset": return 1;
+            case "loop": return 2;
+            // MODIFIED: Added "ping pong" with a space to make it more flexible.
+            case "ping-pong":
+            case "pingpong":
+            case "ping pong": return 3;
+            case "stop":
+            default: return 0;
+        }
+    }
+
+    private getEasingTypeFromString(easing: string): number {
+        const lowerCaseEasing = easing.toLowerCase().trim();
+        switch (lowerCaseEasing) {
+            case "bounce": return 1;
+            case "linear": return 2;
+            case "ease":
+            default: return 0;
+        }
+    }
+    
+    // --- HELPER & EASING FUNCTIONS ---
+    private getEasedProgress(progress: number, type: number): number {
+        switch (type) {
+            case 1: return this.easeOutBounce(progress);
+            case 2: return this.linear(progress);
+            default: return this.easeInOut(progress);
+        }
+    }
+    private easeInOut(t: number): number { return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2; }
+    private linear(t: number): number { return t; }
+    private easeOutBounce(t: number): number {
+        const n1 = 7.5625; const d1 = 2.75;
+        if (t < 1 / d1) { return n1 * t * t; }
+        else if (t < 2 / d1) { return n1 * (t -= 1.5 / d1) * t + 0.75; }
+        else if (t < 2.5 / d1) { return n1 * (t -= 2.25 / d1) * t + 0.9375; }
+        else { return n1 * (t -= 2.625 / d1) * t + 0.984375; }
+    }
+}
+
+// Registers the component, making it available to use in the Horizon editor.
+hz.Component.register(MoveAndRotate);
