@@ -1,3 +1,12 @@
+/**
+ * Sprite Animation Component for UI Elements
+ * Combines core component logic with UI sprite rendering and animation
+ * 
+ * @tags: horizon-core, horizon-ui, component, animation, multi-import, advanced
+ * @import-primary: horizon/core
+ * @import-secondary: horizon/ui
+ * @cross-refs: horizon-ui (sprite rendering and UI display)
+ */
 import { PropTypes, Vec3 } from "horizon/core";
 import { Binding, Image, ImageSource, UIComponent, UINode, View } from "horizon/ui";
 import { sysEvents } from "sysEvents";

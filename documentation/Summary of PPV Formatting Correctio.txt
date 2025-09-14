@@ -1,0 +1,16 @@
+Summary of PPV Formatting Corrections
+✅ Fixed: Changed PPV name from "squidGameFalls" to "SquidGameData:Falls"
+
+Key Patterns Found in Your Repository:
+Format: "GroupName:VariableName"
+Examples from your code:
+"PlayerDataClass:PlayerStats"
+"PlayerDataIWPWearableCUIClass:PlayerStats"
+"PlayerDataIWPWearableCUIClass:PremiumTokens"
+"Test:count"
+"Test:data"
+Benefits of This Format:
+Organization: Groups related variables together
+Namespace: Prevents naming conflicts between different systems
+Consistency: Matches your existing codebase standards
+Horizon Worlds Best Practice: This format is the standard for PPV groups

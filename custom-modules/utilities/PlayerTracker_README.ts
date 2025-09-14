@@ -1,4 +1,12 @@
 /**
+ * PlayerTracker README and Documentation
+ * Comprehensive guide for using the PlayerTracker component
+ * 
+ * @tags: custom-modules, utility, documentation, player, standalone
+ * @import-primary: None (documentation file)
+ * @cross-refs: PlayerTracker.ts (main implementation)
+ */
+/**
  * // Copyright (c) Dave Mills (uRocketLife). Released under the MIT License.
  *
  * # PlayerTracker — README (drop-in comment)
