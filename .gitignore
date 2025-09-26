@@ -4,3 +4,4 @@ node_modules/
 *.js
 tsconfig.tsbuildinfo
 /tmp/
+/.tmp.driveupload
