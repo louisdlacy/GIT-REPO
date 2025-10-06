@@ -1,4 +1,4 @@
-// Copyright (c) Dave Mills (RocketTrouble). Released under the MIT License.
+// Copyright (c) Dave Mills (uRocketLife). Released under the MIT License.
 
 /**
  * # UI_ProgressBar
@@ -92,5 +92,5 @@
  * -----------------------------------------------------
  * 📜 License
  * -----------------------------------------------------
- * MIT © Dave Mills (RocketTrouble)
+ * MIT © Dave Mills (uRocketLife)
  */
